@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET 请求示例</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>GET 请求示例</h1>
+    <button id="fetchDataBtn">获取数据</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#fetchDataBtn').click(function() {
+                // 发送 GET 请求
+                $.get('http://127.0.0.1:8080/test', function(response) {
+                    // 请求成功后，显示数据
+                    $('#result').html(`
+        <p><strong>姓名:</strong> ${response.name}</p>
+        <p><strong>年龄:</strong> ${response.age}</p>
+        <p><strong>性别:</strong> ${response.gender}</p>
+    `);
+                }).fail(function(error) {
+                    // 请求失败时，显示错误信息
+                    $('#result').html('<p>请求失败，请稍后再试。</p>');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
